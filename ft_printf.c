@@ -6,7 +6,7 @@
 /*   By: hubretec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/06 13:10:29 by hubretec          #+#    #+#             */
-/*   Updated: 2021/12/07 15:07:29 by hubretec         ###   ########.fr       */
+/*   Updated: 2021/12/07 15:45:51 by hubretec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	ft_printf(const char *s, ...)
 	va_start(args, s);
 	while (*s)
 	{
-		if (*s == '%')
+		while (*s == '%')
 		{
 			print_arg(++s, args, &len);
 			s++;
