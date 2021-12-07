@@ -6,47 +6,33 @@
 /*   By: hubretec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/06 13:40:27 by hubretec          #+#    #+#             */
-/*   Updated: 2021/12/07 11:52:31 by hubretec         ###   ########.fr       */
+/*   Updated: 2021/12/07 15:09:12 by hubretec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 #include <stdint.h>
-#include "libft.h"
-#include "libftprintf.h"
+#include "ft_printf.h"
 
 void	ft_putchar(char c, int *len)
 {
 	write(1, &c, 1);
-	*len = *len + 1;
+	*len += 1;
 }
 
 void	ft_putstr(char *str, int *len)
 {
+	if (!str)
+	{
+		write(1, "(null)", 6);
+		*len += 6;
+		return ;
+	}
 	while (*str)
 	{
 		write(1, str++, 1);
-		*len = *len + 1;
+		*len += 1;
 	}
-}
-
-void	ft_putnbr_base(int nb, char *base, int *len)
-{
-	int				base_len;
-	unsigned int	nbr;
-
-	base_len = ft_strlen(base);
-	if (nb < 0)
-	{
-		nbr = nb * -1;
-		write(1, "-", 1);
-	}
-	else
-		nbr = nb;
-	if (nbr / base_len)
-		ft_putnbr_base(nbr / base_len, base, len);
-	write(1, &base[nbr % base_len], 1);
-	*len = *len + 1;
 }
 
 char	hex_digit(int v)

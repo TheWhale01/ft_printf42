@@ -6,13 +6,13 @@
 /*   By: hubretec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/06 13:10:29 by hubretec          #+#    #+#             */
-/*   Updated: 2021/12/07 12:00:44 by hubretec         ###   ########.fr       */
+/*   Updated: 2021/12/07 15:07:29 by hubretec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdarg.h>
 #include <unistd.h>
-#include "libftprintf.h"
+#include "ft_printf.h"
 
 void	print_arg(const char *s, va_list args, int *len)
 {
@@ -22,10 +22,14 @@ void	print_arg(const char *s, va_list args, int *len)
 		ft_putstr(va_arg(args, char *), len);
 	else if (*s == 'p')
 		print_addr(va_arg(args, void *), len);
-	else if (*s == 'd' || *s == 'i' || *s == 'u')
+	else if (*s == 'd' || *s == 'i')
 		ft_putnbr_base(va_arg(args, int), DEC_BASE, len);
+	else if (*s == 'u')
+		ft_putnbr_base_u(va_arg(args, unsigned int), DEC_BASE, len);
 	else if (*s == 'x')
-		ft_putnbr_base((va_arg(args, int)), HEX_BASE, len);
+		ft_putnbr_base_u((va_arg(args, unsigned int)), HEX_BASE, len);
+	else if (*s == 'X')
+		ft_putnbr_base_u(va_arg(args, unsigned int), HEX_BASE_M, len);
 	else if (*s == '%')
 		ft_putchar('%', len);
 }
@@ -44,7 +48,8 @@ int	ft_printf(const char *s, ...)
 			print_arg(++s, args, &len);
 			s++;
 		}
-		write(1, s++, 1);
+		if (*s)
+			ft_putchar(*(s++), &len);
 	}
 	va_end(args);
 	return (len);
