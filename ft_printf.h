@@ -6,7 +6,7 @@
 /*   By: hubretec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/06 08:44:47 by hubretec          #+#    #+#             */
-/*   Updated: 2021/12/07 15:04:06 by hubretec         ###   ########.fr       */
+/*   Updated: 2021/12/08 16:28:50 by hubretec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,12 @@
 # define DEC_BASE "0123456789"
 # define HEX_BASE "0123456789abcdef"
 # define HEX_BASE_M "0123456789ABCDEF"
+
+# ifdef __APPLE__
+#  define NULL_PTR "0x0"
+# else
+#  define NULL_PTR "(nil)"
+# endif
 
 int		ft_printf(const char *s, ...);
 

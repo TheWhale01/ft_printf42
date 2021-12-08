@@ -6,7 +6,7 @@
 /*   By: hubretec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/06 13:40:27 by hubretec          #+#    #+#             */
-/*   Updated: 2021/12/08 15:41:13 by hubretec         ###   ########.fr       */
+/*   Updated: 2021/12/08 16:20:29 by hubretec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	print_addr(void *p0, int *len)
 
 	if (!p0)
 	{
-		ft_putstr("0x0", len);
+		ft_putstr(NULL_PTR, len);
 		return ;
 	}
 	p = (uintptr_t)p0;
